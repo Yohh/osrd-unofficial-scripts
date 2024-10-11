@@ -18,7 +18,11 @@ if ! echo "$1" | grep -q "^[0-9]\+\.[0-9]\+\.[0-9]\+$"; then
 		exit 1
 fi
 
-# check if the tag already exists
+# Fetch only tags
+
+git fetch origin 'refs/tags/*:refs/tags/*'
+
+# Check if the tag already exists
 
 if git tag --list | grep -q "^$1$"; then 
 		echo "❌ Tag $1 already exists"
