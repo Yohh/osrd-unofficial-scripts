@@ -16,9 +16,8 @@ echo
 echo "Removing node_modules and dist from:"
 echo $sub_repos
 
-for repo in $sub_repos
-do
-	echo 
+for repo in $sub_repos; do
+	echo
 	echo "Removing node_modules and dist from $repo"
 	rm -rf $repo/node_modules
 	rm $repo/package-lock.json
@@ -27,8 +26,14 @@ done
 
 # install packages in the root directory
 
+echo
+echo "Installing packages in the root directory"
+
 npm install
 
 # build the root directory
+
+echo
+echo "Building the root directory"
 
 npm run build
