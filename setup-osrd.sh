@@ -21,7 +21,7 @@ echo -e "${BOLDGREEN}This script gives you the choice between:${NC}
 ⚠️  You need to be in the osrd folder to launch this script.
 ⚠️  If you want to restore the backup, you need to have the backup file in the osrd parent folder.
 ~~ otherwise, a light backup will be generated.
-‼️  ${RED}You should not use this script automatically, its only purpose is to help you in a last resort situation.${NC}"
+‼️  ${RED}You should not use this script automatically, its only purpose is to help you in a last resort situation or for first setup if you're not familiar with the project.${NC}"
 
 echo
 
