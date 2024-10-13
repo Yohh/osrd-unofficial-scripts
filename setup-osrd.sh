@@ -6,6 +6,7 @@ LIGHTCYAN='\033[0;96m'
 GREEN='\033[0;32m'
 BOLDGREEN='\033[1;32m'
 YELLOW='\033[0;33m'
+RED='\033[0;31m'
 NC='\033[0m'
 
 ARGUMENTS=("postgres" "redis" "core" "editoast" "gateway" "front" "rabbitmq" "osrd-images" "osrdyne")  
@@ -19,7 +20,9 @@ echo -e "${BOLDGREEN}This script gives you the choice between:${NC}
 ⚠️  This script has to be located in osrd's parent folder.
 ⚠️  You need to be in the osrd folder to launch this script.
 ⚠️  If you want to restore the backup, you need to have the backup file in the osrd parent folder.
-~~ otherwise, a light backup will be generated."
+~~ otherwise, a light backup will be generated.
+‼️  ${RED}You should not use this script automatically, its only purpose is to help you in a last resort situation.${NC}"
+
 echo
 
 # Check arguments
