@@ -2,7 +2,7 @@
 
 _launch them while you're in osrd directory_
 
-#### setup-osrd.sh
+#### [setup-osrd](setup-osrd.sh)
 
 this script gives you the ability to choose between two options or both:
 
@@ -24,7 +24,7 @@ this script gives you the ability to choose between two options or both:
 
 _launch them while you're in osrd-ui directory_
 
-#### reset-ui.sh
+#### [reset-ui](reset-ui.sh)
 
 this script will:
 
@@ -35,7 +35,7 @@ this script will:
 _if no `package-lock.json` file exists in the subdirectories, you will have an error message, don't worry about it,
 it's only in case you ran `npm install` in the subdirectories by mistake_
 
-#### create-tag.sh
+#### [create-tag](create-tag.sh)
 
 this script will:
 
@@ -54,5 +54,5 @@ this repository is a collection of scripts that will help you to manage the [OSR
 it's just a helper for the developers who are contributing to the project.
 
 ## License
- 
+
 This project is licensed under the GNU Lesser General Public License. See the [LICENSE](LICENSE) file for more details.
