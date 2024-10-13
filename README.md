@@ -26,11 +26,13 @@ _launch them while you're in osrd-ui directory_
 
 #### [reset-ui](reset-ui.sh)
 
-this script will:
+this script will setup a fresh installation of the `osrd-ui` project by:
 
 1. remove the `node_modules` and the `package-lock.json` in the `osrd-ui` directory if they exist
 2. list all `ui-*` Subdirectories
 3. remove the `node_modules`, `dist` directories and the `package-lock.json` file in each `ui-*` Subdirectory if they exist
+4. run `npm install` in the `osrd-ui` directory
+5. run `npm run build` in the `osrd-ui` directory
 
 _if no `package-lock.json` file exists in the subdirectories, you will have an error message, don't worry about it,
 it's only in case you ran `npm install` in the subdirectories by mistake_
