@@ -1,12 +1,42 @@
 ## OSRD scripts:
 
-_launch them when you're in osrd directory_
+_launch them while you're in osrd directory_
 
-- setup-osrd.sh
+#### setup-osrd.sh
+
+this script gives you the ability to choose between two options or both:
+
+- setup the docker configuration:
+  - remove all the containers
+  - remove all the images
+  - remove all the volumes
+  - setup a new configuration based on the docker-compose.yml file
+    or the host configuration file if you give at least one argument and run the project on a linux system
+- setup data:
+  - restore a backup if you have a single `*.backup` file in the the parent directory
+  - setup a light configuration based in the osrd scripts if you don't have a `*.backup` file
 
 ## OSRD-UI scripts:
 
-_launch them when you're in osrd-ui directory_
+_launch them while you're in osrd-ui directory_
 
-- reset-ui.sh
-- create-tag.sh
+#### reset-ui.sh
+
+this script will:
+
+1. remove the `node_modules` and the `package-lock.json` in the `osrd-ui` directory if they exist
+2. list all `ui-*` Subdirectories
+3. remove the `node_modules`, `dist` directories and the `package-lock.json` file in each `ui-*` Subdirectory if they exist
+
+_if no `package-lock.json` file exists in the subdirectories, you will have an error message, don't worry about it,
+it's only in case you ran `npm install` in the subdirectories by mistake_
+
+#### create-tag.sh
+
+this script will:
+
+1. create a new annotated tag if:
+   - you give it a tag name as an argument
+   - the tag name follows the pattern `*.*.*` where `*` is a number
+   - the tag name is not already used
+2. push the tag to the remote repository
