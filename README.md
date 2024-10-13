@@ -52,3 +52,7 @@ this repository is a collection of scripts that will help you to manage the [OSR
 **it's not part of the OSRD project itself**,
 </br>
 it's just a helper for the developers who are contributing to the project.
+
+## License
+ 
+This project is licensed under the GNU Lesser General Public License. See the [LICENSE](LICENSE) file for more details.
