@@ -34,9 +34,6 @@ this script will setup a fresh installation of the `osrd-ui` project by:
 4. run `npm install` in the `osrd-ui` directory
 5. run `npm run build` in the `osrd-ui` directory
 
-_if no `package-lock.json` file exists in the subdirectories, you will have an error message, don't worry about it,
-it's only in case you ran `npm install` in the subdirectories by mistake_
-
 #### [create-tag](create-tag.sh)
 
 this script will:
