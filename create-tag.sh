@@ -54,8 +54,21 @@ else
 		exit 1
 fi
 
-# Push the tag to the remote repository
+# prompt the user to push the tag to the remote repository
 
-echo -e "${GREEN}Pushing tag $1 to the remote repository${NC}"
+read -p "Your tag $1 has been created. Do you want to push it to the remote repository? (y/n) " -n 1 -r
 
-git push origin "$1"
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+		git push origin "$1"
+		if [ "$?" -eq 0 ]; then
+				echo -e "✅ ${GREEN}Tag $1 pushed to the remote repository${NC}"
+		else
+				echo -e "❌ ${YELLOW}Failed to push tag $1 to the remote repository${NC}"
+				exit 1
+		fi
+else 
+		echo -e "${GREEN}You can push the tag later by running git push origin $1${NC}"
+fi
+
