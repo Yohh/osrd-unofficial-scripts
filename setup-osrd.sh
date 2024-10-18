@@ -58,7 +58,7 @@ fi
 # Reset the docker configuration
 if [[ $REPLY =~ ^[Dd]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 	echo -e "${GREEN}shutting down the containers${NC}"
-	docker compose down
+	docker compose down --remove-orphans
 	echo
 
 	echo -e "${GREEN}removing all containers${NC}"
@@ -66,7 +66,7 @@ if [[ $REPLY =~ ^[Dd]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 	echo
 	
 	echo -e "${GREEN}removing osrd volumes${NC}"
-	if [ $(docker volume ls --format '{{.Name}}' | grep osrd) ]; then
+	if [[ $(docker volume ls --format '{{.Name}}' | grep osrd) ]]; then
 	  volumes=$(docker volume ls --format '{{.Name}}' | grep osrd)
 	  for volume in $volumes; do
 	    docker volume rm "$volume"
@@ -83,9 +83,9 @@ if [[ $REPLY =~ ^[Dd]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 		echo -e "${GREEN}🐧 Linux with host argument(s)${NC}"
 		echo
 		# Launch the containers with the options
-		echo "🚀  ./scripts/osrd-compose.sh up --build $@ -d"
+		echo "🚀  ./scripts/host-compose.sh up --build $@ -d"
 		echo
-		./scripts/osrd-compose.sh up --build "$@" -d
+		./scripts/host-compose.sh up --build "$@" -d
 	else
 		echo -e "${GREEN}🐧 Linux, 🍎 MacOs or 🪟 Windows without host argument(s)${NC}"
 		echo
