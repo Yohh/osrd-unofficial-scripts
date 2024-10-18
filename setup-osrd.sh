@@ -9,7 +9,7 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-ARGUMENTS=("postgres" "redis" "core" "editoast" "gateway" "front" "rabbitmq" "osrd-images" "osrdyne")  
+ARGUMENTS=("postgres" "valkey" "core" "editoast" "gateway" "front" "rabbitmq" "osrd-images" "osrdyne")  
 
 echo -e "${BOLDGREEN}This script gives you the choice between:${NC}
 - Resetting the ${LIGHTCYAN}docker${NC} configuration, which will stop the containers, remove all containers and networks, then relaunch the containers.
