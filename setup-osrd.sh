@@ -108,6 +108,13 @@ if [[ $REPLY =~ ^[Bb]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 		docker compose down
 		docker compose up postgres -d
 		./scripts/load-backup.sh ../*.backup
-		./scripts/osrd-compose.sh up "$@" -d 
+
+		if [ "$(uname)" == "Linux" ] && [ "$#" -gt 0 ]; then
+			echo
+			./scripts/host-compose.sh up "$@" -d
+		else
+			echo
+			docker compose up -d
+		fi
 	fi
 fi
