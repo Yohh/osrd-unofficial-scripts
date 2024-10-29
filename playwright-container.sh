@@ -4,6 +4,7 @@ set -e
 
 # you have to run this script while you are in the root directory of the project
 
+LIGHTCYAN='\033[0;96m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
@@ -19,7 +20,7 @@ xhost +local:docker
 
 echo
 echo -e "${GREEN}Running Playwright container${NC}"
-echo -e "${YELLOW}Don't forget to run${NC} ${GREEN}cd front && yarn playwright install --with-deps${NC} ${YELLOW}inside the container${NC}"
+echo -e "${YELLOW}Don't forget to run${NC} ${LIGHTCYAN}cd front && yarn playwright install --with-deps${NC} ${YELLOW}inside the container${NC}"
 
 docker run -it --rm \
 	--name playwright \
