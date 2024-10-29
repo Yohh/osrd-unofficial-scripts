@@ -20,6 +20,19 @@ this script gives you the ability to choose between two options or both:
 > You should not use this script automatically, its only purpose is to help you in a last
 > resort situation or for first setup if you're not familiar with the project
 
+#### [playwright-container](playwright-container.sh)
+
+this script allow you to run the playwright tests in a container if your system is not compatible with the playwright dependencies
+
+- you need xhost to be installed on your system
+  -while the container is running:
+  - run `cd front`
+  - run `yarn playwright install --with-deps`
+
+> [!NOTE]
+> when you exit the container, xhost will be disabled
+> if the script exits in an unexpected way, you should run `xhost -local:docker` to disable xhost
+
 ## OSRD-UI scripts:
 
 _launch them while you're in osrd-ui directory_
