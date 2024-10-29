@@ -22,10 +22,10 @@ this script gives you the ability to choose between two options or both:
 
 #### [playwright-container](playwright-container.sh)
 
-this script allow you to run the playwright tests in a container if your system is not compatible with the playwright dependencies
+this script allows you to run the playwright tests in a container if your system is not compatible with the playwright dependencies
 
 - you need xhost to be installed on your system
-  -while the container is running:
+- while the container is running:
   - run `cd front`
   - run `yarn playwright install --with-deps`
 
