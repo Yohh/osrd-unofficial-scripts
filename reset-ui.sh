@@ -30,6 +30,10 @@ echo
 echo -e "${GREEN}Removing node_modules and dist from:${NC}"
 echo -e $sub_repos
 
+# add storybook to the list of sub-repos
+
+sub_repos="$sub_repos ./storybook"
+
 for repo in $sub_repos; do
 	echo
 	echo -e "${GREEN}Removing node_modules and dist from $repo ${NC}"
