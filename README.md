@@ -34,16 +34,6 @@ this script will setup a fresh installation of the `osrd-ui` project by:
 4. run `npm install` in the `osrd-ui` directory
 5. run `npm run build` in the `osrd-ui` directory
 
-#### [create-tag](create-tag.sh)
-
-this script will:
-
-1. create a new annotated tag if:
-   - you give it a tag name as an argument
-   - the tag name follows the pattern `*.*.*` where `*` is a number
-   - the tag name is not already used
-2. push the tag to the remote repository
-
 ## about this repository
 
 this repository is a collection of scripts that will help you to manage the [OSRD](https://github.com/OpenRailAssociation/osrd) project and the [OSRD-UI](https://github.com/OpenRailAssociation/osrd-ui) project.
