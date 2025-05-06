@@ -9,11 +9,15 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-ARGUMENTS=("postgres" "valkey" "core" "editoast" "gateway" "front" "rabbitmq" "osrd-images" "osrdyne")  
+ARGUMENTS=("dev-front" "sw" "host" "default")
 
 echo -e "${BOLDGREEN}This script gives you the choice between:${NC}
 - Resetting the ${LIGHTCYAN}docker${NC} configuration, which will stop the containers, remove all containers and networks, then relaunch the containers.
-( You can add options to the command, which will allow you to get access to the ${LIGHTCYAN}unmentioned containers${NC} from your host machine. )
+  You add can some arguments to the script:
+  - ${LIGHTCYAN}dev-front${NC} to launch the front-end in development mode (will be saved in .osrd-compose-state)
+  - ${LIGHTCYAN}sw${NC} to enable single worker mode (will be saved in .osrd-compose-state)
+  - ${LIGHTCYAN}host${NC} to use networking mode (will be saved in .osrd-compose-state)
+  - ${LIGHTCYAN}default${NC} to launch the base configuration and clear the saved state
 - Restoring the ${LIGHTCYAN}backup${NC}, which will stop the containers, restore the backup, then relaunch the containers.
 - Doing ${LIGHTCYAN}both${NC}, which will reset the docker configuration, then restore the backup.
 
@@ -28,7 +32,7 @@ echo
 # Check arguments
 if [ "$#" -gt 0 ]; then
 	for arg in "$@"; do
-		 if [[ ! " ${ARGUMENTS[@]} " =~ " ${arg} " ]]; then
+		 if [[ ! " ${ARGUMENTS[*]} " =~ " ${arg} " ]]; then
 			echo -e "❌ ${YELLOW}The argument ${arg} is not compatible with the script${NC}"
 			exit 1
 		 fi
@@ -58,11 +62,11 @@ fi
 # Reset the docker configuration
 if [[ $REPLY =~ ^[Dd]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 	echo -e "${GREEN}shutting down the containers${NC}"
-	docker compose down --remove-orphans
+	./osrd-compose down 
 	echo
 
 	echo -e "${GREEN}removing all containers${NC}"
-	docker system prune -af
+	docker system prune -a
 	echo
 	
 	echo -e "${GREEN}removing osrd volumes${NC}"
@@ -76,24 +80,12 @@ if [[ $REPLY =~ ^[Dd]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 	fi
 	echo
 
-	echo -e "${GREEN}checking the OS then launching the containers${NC}"
+	echo -e "${GREEN}run osrd-compose with argument(s) if any${NC}"
 	echo
-	# Check if linux and host argument is available
-	if [ "$(uname)" == "Linux" ] && [ "$#" -gt 0 ]; then
-		echo -e "${GREEN}🐧 Linux with host argument(s)${NC}"
-		echo
-		# Launch the containers with the options
-		echo "🚀  ./scripts/host-compose.sh up --build $@ -d"
-		echo
-		./scripts/host-compose.sh up --build "$@" -d
-	else
-		echo -e "${GREEN}🐧 Linux, 🍎 MacOs or 🪟 Windows without host argument(s)${NC}"
-		echo
-		# Launch the containers without the options
-		echo "🚀  docker compose up --build -d"
-		echo
-		docker compose up --build -d
-	fi
+	# Launch the containers with the options
+	echo "🚀  ./osrd-compose up $* -d --build"
+	echo
+	./osrd-compose "$@" up -d --build
 fi
 
 # Restore the backup
@@ -105,16 +97,11 @@ if [[ $REPLY =~ ^[Bb]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 		./scripts/load-railjson-rolling-stock.sh tests/data/rolling_stocks/*.json
 	else
 		echo -e "${GREEN}restoring the backup${NC}"
-		docker compose down
-		docker compose up postgres -d
+		# docker compose down
+		# docker compose up postgres -d
 		./scripts/load-backup.sh ../*.backup
 
-		if [ "$(uname)" == "Linux" ] && [ "$#" -gt 0 ]; then
-			echo
-			./scripts/host-compose.sh up "$@" -d
-		else
-			echo
-			docker compose up -d
-		fi
+		echo
+		./osrd-compose up -d
 	fi
 fi
