@@ -22,17 +22,17 @@ this script gives you the ability to choose between two options or both:
 
 ## OSRD-UI scripts:
 
-_launch them while you're in osrd-ui directory_
+_launch them while you're in osrd/front directory_
 
 #### [reset-ui](reset-ui.sh)
 
 this script will setup a fresh installation of the `osrd-ui` project by:
 
-1. remove the `node_modules` and the `package-lock.json` in the `osrd-ui` directory if they exist
-2. list all `ui-*` Subdirectories
-3. remove the `node_modules`, `dist` directories and the `package-lock.json` file in each `ui-*` Subdirectory if they exist
-4. run `npm install` in the `osrd-ui` directory
-5. run `npm run build` in the `osrd-ui` directory
+1. remove the `node_modules` in the `osrd/front` directory if they exist
+2. list all `/front/ui-*` Subdirectories
+3. remove the `node_modules`, `dist` directories each `ui-*` Subdirectory if they exist
+4. run `npm install` in the `/front` directory
+5. run `npm run build-ui` in the `/front` directory
 
 ## about this repository
 
