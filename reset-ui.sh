@@ -9,39 +9,27 @@ YELLOW='\033[0;33m'
 NC='\033[0m'
 
 # Check if the user is in the osrd-ui folder
-if [[ "$(pwd)" != *"/osrd-ui" ]]; then
-	echo -e "❌ ${YELLOW}You need to be in the osrd-ui folder to launch this script${NC}"
-	exit 1
-fi
 
-echo -e "${GREEN}Removing node_modules from the root directory${NC}"
+case "$(pwd)" in
+*/osrd/front) ;;
+*) echo -e "❌ ${YELLOW}You need to be in the osrd/front/ folder to launch this script${NC}" && exit 1 ;;
+esac
+
+echo -e "${GREEN}Removing node_modules from the front directory${NC}"
 
 rm -rf node_modules
-if [ -f package-lock.json ]; then
-	echo -e "${YELLOW}Removing package-lock.json from the root directory${NC}"
-fi
 
 # create a list of all the osrd-ui sub-repos
-sub_repos=$(ls -d ./ui-*)
+sub_repos=$(ls -d ./ui/ui-*)
 
 # remove node_modules and dist from all the sub-repos
 
 echo
 echo -e "${GREEN}Removing node_modules and dist from:${NC}"
-echo -e $sub_repos
-
-# add storybook to the list of sub-repos
-
-sub_repos="$sub_repos ./storybook"
+echo -e "$sub_repos"
 
 for repo in $sub_repos; do
-	echo
-	echo -e "${GREEN}Removing node_modules and dist from $repo ${NC}"
-	rm -rf $repo/node_modules
-	if [ -f $repo/package-lock.json ]; then
-		echo -e "${YELLOW}Removing package-lock.json from $repo ${NC}"
-	fi
-	rm -rf $repo/dist
+	rm -rf "$repo/dist"
 done
 
 # install packages in the root directory
@@ -56,4 +44,4 @@ npm install
 echo
 echo -e "${GREEN}Building the root directory${NC}"
 
-npm run build
+npm run build-ui
