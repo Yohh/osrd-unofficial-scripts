@@ -9,7 +9,7 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-ARGUMENTS=("dev-front" "sw" "host" "default")
+ARGUMENTS=("dev-front" "sw" "host" "default" "playwright")
 
 echo -e "${BOLDGREEN}This script gives you the choice between:${NC}
 - Resetting the ${LIGHTCYAN}docker${NC} configuration, which will stop the containers, remove all containers and networks, then relaunch the containers.
@@ -62,7 +62,7 @@ fi
 # Reset the docker configuration
 if [[ $REPLY =~ ^[Dd]$ ]] || [[ $REPLY =~ ^[Ff]$ ]]; then
 	echo -e "${GREEN}shutting down the containers${NC}"
-	./osrd-compose down 
+	./osrd-compose down --remove-orphans
 	echo
 
 	echo -e "${GREEN}removing all containers${NC}"
