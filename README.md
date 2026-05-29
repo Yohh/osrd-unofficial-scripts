@@ -20,6 +20,15 @@ this script gives you the ability to choose between two options or both:
 > You should not use this script automatically, its only purpose is to help you in a last
 > resort situation or for first setup if you're not familiar with the project
 
+#### [adapt-playwright-version-to-nixpkgs](adapt-playwright-version-to-nixpkgs.sh)
+
+this script will adapt the `playwright` version in the `package.json` file to the version available in the `nixpkgs` repository, this is useful for the developers who are using `nix` when the versions differ.
+
+> [!warning]
+> this script will modify the `package.json` and `package-lock.json` files,
+> so you shouldn't commit the changes if you run this script, it's only for your local
+> development environment.
+
 ## OSRD-UI scripts:
 
 _launch them while you're in osrd/front directory_
